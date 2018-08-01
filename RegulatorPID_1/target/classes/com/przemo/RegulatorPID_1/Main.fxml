@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="373.0" prefWidth="476.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.przemo.RegulatorPID_1.MainController">
+   <children>
+      <Text layoutX="160.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Set your PID parameters" wrappingWidth="136.13671875" />
+      <Text layoutX="57.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kp" />
+      <Text layoutX="187.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ti" />
+      <Text layoutX="285.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Td" />
+      <TextField id="KpTextField" fx:id="KpTextField" layoutX="85.0" layoutY="110.0" prefHeight="25.0" prefWidth="39.0" />
+      <TextField id="TiTextField" fx:id="TiTextField" layoutX="212.0" layoutY="110.0" prefHeight="25.0" prefWidth="32.0" />
+      <TextField id="TdTextField" fx:id="TdTextField" layoutX="314.0" layoutY="110.0" prefHeight="25.0" prefWidth="39.0" />
+      <Button layoutX="340.0" layoutY="244.0" mnemonicParsing="false" onAction="#setPID" text="Set" />
+   </children>
+</AnchorPane>
