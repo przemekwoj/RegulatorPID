@@ -26,21 +26,19 @@ public class MainController
 	public void setPID(ActionEvent event) throws IOException
 	{
 	
-		System.out.println("PID setted");
+		/*System.out.println("PID setted");
 		LocalDevice device = LocalDevice.getLocalDevice();
-		System.out.println("here1");
+		//pobiera sparowane urzadzenia z bluetoothem , jesli nie beda sparowane to error wywali ale program sie nei zatrzyma
 		RemoteDevice[] remotedevice = device.getDiscoveryAgent().retrieveDevices(DiscoveryAgent.PREKNOWN);
-		System.out.println("here2");
-		System.out.println(remotedevice.length);
 		for(RemoteDevice d :remotedevice)
 		{
 			System.out.println("Device name :" + d.getFriendlyName(false));
-			System.out.println("Bluetooth adress :"+d.getBluetoothAddress() + "/n");
+			System.out.println("Bluetooth adress :"+d.getBluetoothAddress());
 			
-		}
+		}*/
 		System.out.println(KpTextField.getText());
 		System.out.println(TiTextField.getText());
 		System.out.println(TdTextField.getText());
-		//myMessage.setText(Integer.toString(myRand));
+	
 	}
 }
