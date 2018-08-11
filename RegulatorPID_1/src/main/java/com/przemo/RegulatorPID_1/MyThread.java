@@ -4,29 +4,39 @@ import java.io.IOException;
 
 import javax.microedition.io.Connector;
 import javax.microedition.io.StreamConnection;
+
+import javafx.fxml.FXML;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
+
 import java.io.InputStream;
 import java.io.OutputStream;
 
 
 public class MyThread implements Runnable
 {
-
+	private int k;
+	private boolean finish = false;
 	public void run() 
 	{		
 		//create the service url
-		String connectionString = Bluetooth.getServiceURL();
 		
+		String connectionString = Bluetooth.getServiceURL();
 		try 
 		{
 			String hc05Url = Bluetooth.getUrl();
 			StreamConnection streamConnection ;
 				OutputStream os;
 				InputStream is;
-					while(true)
+				while(!finish)
 					{
 					streamConnection = (StreamConnection)Connector.open(hc05Url);
 					os = streamConnection.openOutputStream();
 					is = streamConnection.openInputStream();
+					//layout information about BT
+					MainController.isActiveBT = true;
+					//
 					int x = 20;
 					os.write(x);
 					os.close();
@@ -57,10 +67,11 @@ public class MyThread implements Runnable
 						mainVessel[i]=supportVessel[i];
 					}
 					is.close();
-					
 					streamConnection.close();
 					System.out.println("received " + new String(mainVessel));
 					}
+				MainController.isActiveBT = false;
+
 			
 
 		} catch (IOException e) 
@@ -71,5 +82,11 @@ public class MyThread implements Runnable
 			e.printStackTrace();
 		}
 	}
-	
+	public boolean isFinish() {
+		return finish;
+	}
+	public void setFinish(boolean finish) {
+		this.finish = finish;
+	}
+
 }

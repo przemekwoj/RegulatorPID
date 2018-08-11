@@ -24,16 +24,9 @@ public class Main extends Application
 	public static void main(String[] args) throws IOException
 	{
 		System.out.println("2");
-		LocalDevice device = LocalDevice.getLocalDevice();
-		RemoteDevice[] remotedevice = device.getDiscoveryAgent().retrieveDevices(DiscoveryAgent.PREKNOWN);
-		for(RemoteDevice d : remotedevice)
-		{
-			System.out.println("device name : " + d.getFriendlyName(false));
-			System.out.println("bluetooth adress : " + d.getBluetoothAddress());
-
-		}
-		Thread watek = new Thread(new MyThread());
-		watek.start();
+		
+		//Thread watek = new Thread(new MyThread());
+		//watek.start();
 		launch(args);
 		System.out.println("3");
 	}
@@ -41,7 +34,7 @@ public class Main extends Application
 	@Override
 	public void start(Stage primaryStage) throws IOException 
 	{
-	
+		
 		Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
