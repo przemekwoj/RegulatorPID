@@ -59,15 +59,15 @@ public class MainController
 				//we are adding menuitem to SplitMenuButton
 				connectBTbutton.getItems().add(new MenuItem(d.getFriendlyName(false)));
 				// we are setting function of this menuitem
-				connectBTbutton.getItems().get(menuItemId).setOnAction(e -> {
-																			MenuItem menuItem = (MenuItem) e.getSource();
-																			try {
-																				setBTadress(menuItem,remotedevice);
-																			} catch (InterruptedException | IOException e1) {
-																				// TODO Auto-generated catch block
-																				e1.printStackTrace();
-																			}
-																			  });
+				connectBTbutton.getItems().get(menuItemId).setOnAction
+				(e ->{
+					MenuItem menuItem = (MenuItem) e.getSource();
+					try {
+						setBTadress(menuItem,remotedevice);
+					} catch (InterruptedException | IOException e1) {
+						e1.printStackTrace();
+					}
+					 });
 				menuItemId++;
 			}
 			connectBTbutton.getTypeSelector().length();

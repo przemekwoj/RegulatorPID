@@ -1,0 +1,101 @@
+package com.przemo.RegulatorPID_1;
+
+public class PID 
+{
+	//pid parameters
+	private float kp;
+	private float ti;
+	private float td;
+	//request value
+	private float ud;
+	// error
+	private float e = 0;
+	//previous error
+	private float e_prev = 0;
+	//calculate value
+	public static int u;
+	
+	public static int u_aktualne;
+	
+	private float sumError = 0;
+	
+	private float deltaError = 0;
+
+
+
+
+	public PID(float kp,float ti,float td,float ud)
+	{
+		this.kp = kp;
+		this.ti = ti;
+		this.td = td;
+		this.ud = ud;
+	}
+	
+	float calculateError()
+	{
+		e = ud - u_aktualne;
+		return e;
+	}
+	public void returnCaltulateValue()
+	{
+		e = calculateError();
+		sumError = sumError + e;
+		deltaError = e - e_prev;
+		u = (int)(kp*(e + (1/ti)*sumError +td*deltaError));
+		e_prev = e;
+	}
+	public float getUd() {
+		return ud;
+	}
+
+
+	public void setUd(float ud) {
+		this.ud = ud;
+	}
+
+
+	public float getE() {
+		return e;
+	}
+
+
+	public void setE(float e) {
+		this.e = e;
+	}
+
+
+	public float getE_prev() {
+		return e_prev;
+	}
+
+
+	public void setE_prev(float e_prev) {
+		this.e_prev = e_prev;
+	}
+	public float getKp() {
+		return kp;
+	}
+
+	public void setKp(float kp) {
+		this.kp = kp;
+	}
+
+	public float getTi() {
+		return ti;
+	}
+
+	public void setTi(float ti) {
+		this.ti = ti;
+	}
+
+	public float getTd() {
+		return td;
+	}
+
+	public void setTd(float td) {
+		this.td = td;
+	}
+	
+	
+}

@@ -1,0 +1,32 @@
+package com.przemo.RegulatorPID_1;
+
+import java.io.IOException;
+
+import javax.bluetooth.BluetoothStateException;
+import javax.bluetooth.DiscoveryAgent;
+import javax.bluetooth.LocalDevice;
+import javax.bluetooth.RemoteDevice;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.SplitMenuButton;
+
+public class ChooseBtController 
+{
+	@FXML
+	private SplitMenuButton connectBTbutton;
+	
+	public void initialize() throws IOException
+	{
+	LocalDevice device = LocalDevice.getLocalDevice();
+	RemoteDevice[] remotedevice = device.getDiscoveryAgent().retrieveDevices(DiscoveryAgent.PREKNOWN);
+		for(RemoteDevice d : remotedevice)
+		{
+			connectBTbutton.getItems().add(new MenuItem(d.getFriendlyName(false)));
+			System.out.println("device name : " + d.getFriendlyName(false));
+			System.out.println("bluetooth adress : " + d.getBluetoothAddress());
+	
+		}
+	
+	}
+}

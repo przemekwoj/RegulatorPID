@@ -1,0 +1,65 @@
+package com.przemo.RegulatorPID_1;
+
+public class PID_Thread implements Runnable
+{
+	private boolean isFinished = false;
+	//pid parameters
+		private float kp;
+		private float ti;
+		private float td;
+		//request value
+		private float ud;
+	@Override
+	public void run() 
+	{
+		 PID pid = new PID(kp, ti, td, ud);
+		while(!isFinished)
+		{
+			 pid.returnCaltulateValue();
+			 System.out.println(PID.u);
+			 try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	public boolean isFinished() {
+		return isFinished;
+	}
+	public void setFinished(boolean isFinished) {
+		this.isFinished = isFinished;
+	}
+	public void setValue(float kp,float ti,float td, float ud)
+	{
+		this.kp = kp;
+		this.ti= ti;
+		this.td = td;
+		this.ud = ud;
+	}
+	public float getKp() {
+		return kp;
+	}
+	public void setKp(float kp) {
+		this.kp = kp;
+	}
+	public float getTi() {
+		return ti;
+	}
+	public void setTi(float ti) {
+		this.ti = ti;
+	}
+	public float getTd() {
+		return td;
+	}
+	public void setTd(float td) {
+		this.td = td;
+	}
+	public float getUd() {
+		return ud;
+	}
+	public void setUd(float ud) {
+		this.ud = ud;
+	}
+}

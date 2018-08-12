@@ -1,0 +1,99 @@
+package com.przemo.RegulatorPID_1;
+
+import java.awt.List;
+import java.io.IOException;
+import java.io.ObjectInputStream.GetField;
+import java.util.ArrayList;
+import java.util.Random;
+
+import javax.bluetooth.BluetoothStateException;
+import javax.bluetooth.DiscoveryAgent;
+import javax.bluetooth.LocalDevice;
+import javax.bluetooth.RemoteDevice;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.SplitMenuButton;
+import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
+
+public class MainController 
+{
+	@FXML
+	private SplitMenuButton connectBTbutton;
+	@FXML
+	private TextField KpTextField;
+	@FXML
+	private TextField TiTextField;
+	@FXML
+	private TextField TdTextField;
+	@FXML
+	private  Text connectionLabel;
+	@FXML
+	private  Circle BTactivationCircle;
+	
+	static int jk = 0;
+	private ArrayList<Thread> listThread = new ArrayList<Thread>();
+	
+	public static boolean isActiveBT = false;
+	
+	public void setPID(ActionEvent event) throws IOException
+	{
+
+		System.out.println(KpTextField.getText());
+		System.out.println(TiTextField.getText());
+		System.out.println(TdTextField.getText());
+	
+	}
+	
+	public void setBT() throws IOException
+	{
+		LocalDevice device = LocalDevice.getLocalDevice();
+		RemoteDevice[] remotedevice = device.getDiscoveryAgent().retrieveDevices(DiscoveryAgent.PREKNOWN);
+		connectBTbutton.getItems().clear();
+			int menuItemId = 0;
+			for(RemoteDevice d : remotedevice)
+			{
+				connectBTbutton.getItems().add(new MenuItem(d.getFriendlyName(false)));
+				connectBTbutton.getItems().get(menuItemId).setOnAction(e -> {
+																			MenuItem menuItem = (MenuItem) e.getSource();
+																			try {
+																				setBTadress(menuItem);
+																			} catch (InterruptedException e1) {
+																				// TODO Auto-generated catch block
+																				e1.printStackTrace();
+																			}
+																			  });
+				menuItemId++;
+			}
+			connectBTbutton.getTypeSelector().length();
+	}
+	
+	public void setBTadress(MenuItem menuItem) throws InterruptedException
+	{
+		jk++;
+		BTactivationCircle.setFill(new Color(1,0,0,1));
+		connectionLabel.setText("You are not connected");
+		String nameBT = menuItem.getText();
+		System.out.println(nameBT);
+		Bluetooth.setHc05url(nameBT);
+		System.out.println(Bluetooth.getHc05url());
+		Thread watek = new Thread(new MyThread());
+		listThread.add(watek);
+		watek.start();
+		Thread.sleep(1000);
+		if(isActiveBT == true)
+		{
+			BTactivationCircle.setFill(new Color(0,1,0,1));
+			connectionLabel.setText("You are connected to "+ nameBT);
+		}
+	}
+
+
+	
+}
