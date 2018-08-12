@@ -16,8 +16,9 @@ import java.io.OutputStream;
 
 public class MyThread implements Runnable
 {
-	private int k;
+	//is thread finished his job?
 	private boolean finish = false;
+	
 	public void run() 
 	{		
 		//create the service url
@@ -36,9 +37,7 @@ public class MyThread implements Runnable
 					is = streamConnection.openInputStream();
 					//layout information about BT
 					MainController.isActiveBT = true;
-					//
-					int x = 20;
-					os.write(x);
+					os.write(PID.u);
 					os.close();
 					//arduino bluetooth send information in byte shape
 					//so we have to create vessel main vessel for information , its "supportVessel"
@@ -68,7 +67,11 @@ public class MyThread implements Runnable
 					}
 					is.close();
 					streamConnection.close();
-					System.out.println("received " + new String(mainVessel));
+					String u_akt = new String(mainVessel);
+					PID.u_aktualne = Integer.parseInt(u_akt.trim());
+					System.out.println("u aktulne z arduino " + PID.u_aktualne);
+					System.out.println("u obliczone " + PID.u);
+					System.out.println("ud  " + 150);
 					}
 				MainController.isActiveBT = false;
 

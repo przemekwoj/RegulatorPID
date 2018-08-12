@@ -21,7 +21,7 @@
          </graphic></SplitMenuButton>
       <Circle id="BTactivationCircle" fx:id="BTactivationCircle" fill="#ff1f1f" layoutX="308.0" layoutY="118.0" radius="19.0" stroke="BLACK" strokeType="INSIDE" />
       <Text id="connectionLabel" fx:id="connectionLabel" layoutX="133.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You are not connected" wrappingWidth="140" />
-      <Button fx:id="buttonNext" layoutX="327.0" layoutY="282.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="67.0" text="next" visible="false">
+      <Button fx:id="buttonNext" layoutX="327.0" layoutY="282.0" mnemonicParsing="false" onAction="#nextPage" prefHeight="28.0" prefWidth="67.0" text="next">
          <padding>
             <Insets bottom="4.0" right="20.0" />
          </padding>

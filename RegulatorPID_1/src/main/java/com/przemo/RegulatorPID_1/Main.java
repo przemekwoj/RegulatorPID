@@ -21,14 +21,9 @@ import javafx.stage.Stage;
 public class Main extends Application
 {
 	
-	public static void main(String[] args) throws IOException
+	public static void main(String[] args) throws IOException, InterruptedException
 	{
-		System.out.println("2");
-		
-		//Thread watek = new Thread(new MyThread());
-		//watek.start();
 		launch(args);
-		System.out.println("3");
 	}
 	
 	@Override
