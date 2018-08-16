@@ -37,6 +37,7 @@ public class MyThread implements Runnable
 					is = streamConnection.openInputStream();
 					//layout information about BT
 					MainController.isActiveBT = true;
+					PID.u_list.add(PID.u);
 					os.write(PID.u);
 					os.close();
 					//arduino bluetooth send information in byte shape

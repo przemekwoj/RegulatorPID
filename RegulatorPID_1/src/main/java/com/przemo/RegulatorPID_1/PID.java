@@ -1,5 +1,7 @@
 package com.przemo.RegulatorPID_1;
 
+import java.util.ArrayList;
+
 public class PID 
 {
 	//pid parameters
@@ -7,19 +9,21 @@ public class PID
 	private double ti;
 	private double td;
 	//request value
-	private double ud;
+	public static double ud;
 	// error
 	private double e = 0;
 	//previous error
 	private double e_prev = 0;
 	//calculate value
-	public static int u;
+	public static int u = 0;
 	
 	public static int u_aktualne;
 	
 	private double sumError = 0;
 	
 	private double deltaError = 0;
+		
+	public static  ArrayList<Integer> u_list = new ArrayList<Integer>();
 
 
 
@@ -39,10 +43,14 @@ public class PID
 	}
 	public void returnCaltulateValue()
 	{
+		
 		e = calculateError();
 		sumError = sumError + e;
 		deltaError = e - e_prev;
 		u = (int)(kp*(e + (1/ti)*sumError +td*deltaError));
+		//this is mapping for arduino , coz PWM can take value from 0 - 255
+		if(u > 255) u = 255;
+		if(u < 0) u = 0;
 		e_prev = e;
 	}
 	public double getUd() {

@@ -1,0 +1,29 @@
+#include <SoftwareSerial.h>
+
+SoftwareSerial Bluetooth(10, 9);// RX, TX
+int receivedData;
+int sendData;
+void setup() 
+{
+  analogWrite(3,0);
+  pinMode(3,OUTPUT);
+  pinMode(A0,INPUT);
+  Bluetooth.begin(9600);
+  Serial.begin(9600);
+}
+void loop() 
+{ 
+
+  if(Bluetooth.available()>0)
+  {
+      receivedData = Bluetooth.read();
+      Serial.println(receivedData);
+      sendData = analogRead(A0);
+      sendData = map(sendData, 0, 1023, 0, 255);     
+      Bluetooth.println(sendData);
+     delay(1000);
+      analogWrite(3,receivedData);
+     Bluetooth.flush();
+  }
+
+}

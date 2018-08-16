@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -13,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class PID_Controller
 {
@@ -41,8 +43,11 @@ public class PID_Controller
  @FXML
  private Button button_set_value_pid;
  
+ public static int numberOfChart = 0;
+ 
  ArrayList<Thread> threadlist = new ArrayList<Thread>();
  ArrayList<PID_Thread> mythreadlist = new ArrayList<PID_Thread>();
+
 
  public void backToPreviousPage() throws IOException
  {
@@ -74,7 +79,7 @@ public class PID_Controller
 	Thread watek = new Thread(mythreadlist.get(0));
 	threadlist.add(watek);
 	threadlist.get(0).start();
-
+	showChart();
  }
  
  public void changePIDparams(ActionEvent e)
@@ -127,5 +132,35 @@ public class PID_Controller
 	 val = Math.round(val);
 	 val = val/100;
 	 return val;
+ }
+ 
+ public void showChart()
+ {
+	 numberOfChart++;
+	 if(numberOfChart==1)
+	 {
+	     try {
+	    	 //this allow to pot chart
+	    	 ChartController.isFinish=false;
+	 		 Parent root = FXMLLoader.load(getClass().getResource("Chart.fxml"));
+	         Stage stage = new Stage();
+	         stage.setTitle("PID");
+	         stage.setScene(new Scene(root, 600, 600));
+	         stage.show();
+	         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+				
+				@Override
+				public void handle(WindowEvent event) {
+					// this is finisht a chart thread
+					ChartController.isFinish=true;
+					numberOfChart = 0;
+					
+				}
+			});
+	     }
+	     catch (IOException e) {
+	         e.printStackTrace();
+	     }
+	 }
  }
 }
