@@ -1,5 +1,6 @@
 package com.przemo.RegulatorPID_1;
 import java.io.IOException;
+import java.util.Date;
 
 import javax.bluetooth.DiscoveryAgent;
 import javax.bluetooth.LocalDevice;
@@ -7,6 +8,9 @@ import javax.bluetooth.RemoteDevice;
 import javax.bluetooth.UUID;
 import javax.microedition.io.Connector;
 import javax.microedition.io.StreamConnectionNotifier;
+
+import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.intel.bluetooth.BluetoothConnectionAccessAdapter;
 import com.intel.bluetooth.BluetoothServerConnection;
@@ -21,8 +25,10 @@ import javafx.stage.Stage;
 public class Main extends Application
 {
 	
+	
 	public static void main(String[] args) throws IOException, InterruptedException
 	{
+		
 		launch(args);
 	}
 	
@@ -30,9 +36,9 @@ public class Main extends Application
 	public void start(Stage primaryStage) throws IOException 
 	{
 		
-		Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("layout/Main.fxml"));
 		Scene scene = new Scene(root);
-		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		scene.getStylesheets().add(getClass().getResource("layout/application.css").toExternalForm());
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}

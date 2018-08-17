@@ -15,7 +15,7 @@
          <graphic>
             <ImageView fitHeight="21.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../image/bluetooth_icon.png" />
+                  <Image url="@../../../../image/bluetooth_icon.png" />
                </image>
             </ImageView>
          </graphic></SplitMenuButton>
@@ -28,7 +28,7 @@
          <graphic>
             <ImageView fx:id="imageNext" fitHeight="39.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../image/arrow.png" />
+                  <Image url="@../../../../image/arrow.png" />
                </image>
             </ImageView>
          </graphic>

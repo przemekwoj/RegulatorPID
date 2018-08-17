@@ -51,9 +51,9 @@ public class PID_Controller
 
  public void backToPreviousPage() throws IOException
  {
-		Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("layout/Main.fxml"));
 		Scene scene = new Scene(root);
-		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		scene.getStylesheets().add(getClass().getResource("layout/application.css").toExternalForm());
 	    Stage stage = (Stage) backButton.getScene().getWindow();
 		stage.setScene(scene);
 		stage.show(); 
@@ -142,7 +142,7 @@ public class PID_Controller
 	     try {
 	    	 //this allow to pot chart
 	    	 ChartController.isFinish=false;
-	 		 Parent root = FXMLLoader.load(getClass().getResource("Chart.fxml"));
+	 		 Parent root = FXMLLoader.load(getClass().getResource("layout/Chart.fxml"));
 	         Stage stage = new Stage();
 	         stage.setTitle("PID");
 	         stage.setScene(new Scene(root, 600, 600));

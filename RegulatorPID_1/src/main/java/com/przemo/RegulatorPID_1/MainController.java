@@ -119,9 +119,9 @@ public class MainController
 	
 	public void nextPage() throws IOException
 	{
-		Parent root = FXMLLoader.load(getClass().getResource("PID.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("layout/PID.fxml"));
 		Scene scene2 = new Scene(root);
-		scene2.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		scene2.getStylesheets().add(getClass().getResource("layout/application.css").toExternalForm());
 	    Stage stage = (Stage) buttonNext.getScene().getWindow();
 		stage.setScene(scene2);
 		stage.show();

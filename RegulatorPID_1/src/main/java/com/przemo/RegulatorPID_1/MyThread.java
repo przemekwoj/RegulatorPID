@@ -45,7 +45,7 @@ public class MyThread implements Runnable
 					//its 1024 bytes , its overneed , so we create mainVessele witch contains only
 					// inforation bytes , so we create mainVessel with dynamic lenght
 					byte[] supportVessel = new byte[1024];	
-					Thread.sleep(500);
+					Thread.sleep(1000);
 					is.read(supportVessel);
 					int dlugosc = 0;
 					//checking lenght of important information
@@ -72,7 +72,7 @@ public class MyThread implements Runnable
 					PID.u_aktualne = Integer.parseInt(u_akt.trim());
 					System.out.println("u aktulne z arduino " + PID.u_aktualne);
 					System.out.println("u obliczone " + PID.u);
-					System.out.println("ud  " + 150);
+					System.out.println("ud  " + PID.ud);
 					}
 				MainController.isActiveBT = false;
 
