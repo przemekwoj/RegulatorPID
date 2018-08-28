@@ -2,12 +2,14 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="373.0" prefWidth="476.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.przemo.RegulatorPID_1.PID_Controller">
+<AnchorPane prefHeight="395.0" prefWidth="493.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.przemo.RegulatorPID_1.controllers.PID_Controller">
    <children>
       <Button fx:id="backButton" layoutX="30.0" layoutY="321.0" mnemonicParsing="false" onAction="#backToPreviousPage" text="back">
          <graphic>
@@ -76,5 +78,12 @@
          </graphic>
       </Button>
       <Button fx:id="button_set_value_pid" layoutX="346.0" layoutY="321.0" mnemonicParsing="false" onAction="#setPID" text="SET" />
+      <Button fx:id="save" layoutX="237.0" layoutY="225.0" mnemonicParsing="false" onAction="#showSave" text="save" />
+      <SplitMenuButton fx:id="loadparamsbutton" layoutX="318.0" layoutY="225.0" mnemonicParsing="false" onMouseEntered="#loadParams" text="load parameters">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Action 1" />
+          <MenuItem mnemonicParsing="false" text="Action 2" />
+        </items>
+      </SplitMenuButton>
    </children>
 </AnchorPane>

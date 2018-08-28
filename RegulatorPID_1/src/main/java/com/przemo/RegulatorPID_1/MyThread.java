@@ -5,10 +5,8 @@ import java.io.IOException;
 import javax.microedition.io.Connector;
 import javax.microedition.io.StreamConnection;
 
-import javafx.fxml.FXML;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.text.Text;
+import com.przemo.RegulatorPID_1.controllers.MainController;
+
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -23,7 +21,7 @@ public class MyThread implements Runnable
 	{		
 		//create the service url
 		
-		String connectionString = Bluetooth.getServiceURL();
+		
 		try 
 		{
 			String hc05Url = Bluetooth.getUrl();

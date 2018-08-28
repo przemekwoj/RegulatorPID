@@ -1,8 +1,16 @@
-package com.przemo.RegulatorPID_1;
+package com.przemo.RegulatorPID_1.controllers;
 
-import java.awt.Event;
+import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
+
+import javax.bluetooth.RemoteDevice;
+import com.przemo.RegulatorPID_1.PID_Thread;
+import com.przemo.databaseclasses.Params;
+import com.przemo.hibernate.service.ParamsService;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -12,7 +20,11 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -42,6 +54,10 @@ public class PID_Controller
  private Button button_arrow_down_td;
  @FXML
  private Button button_set_value_pid;
+ @FXML
+ private Button save;
+ @FXML
+ private SplitMenuButton loadparamsbutton;
  
  public static int numberOfChart = 0;
  
@@ -51,9 +67,11 @@ public class PID_Controller
 
  public void backToPreviousPage() throws IOException
  {
-		Parent root = FXMLLoader.load(getClass().getResource("layout/Main.fxml"));
+	 	URL url = new File("src/main/java/com/przemo/RegulatorPID_1/layout/Main.fxml").toURL();
+	 	Parent root = FXMLLoader.load(url);
 		Scene scene = new Scene(root);
-		scene.getStylesheets().add(getClass().getResource("layout/application.css").toExternalForm());
+		String s = "src/main/java/com/przemo/RegulatorPID_1/layout/application.css.fxml";
+		scene.getStylesheets().add(s);
 	    Stage stage = (Stage) backButton.getScene().getWindow();
 		stage.setScene(scene);
 		stage.show(); 
@@ -142,7 +160,8 @@ public class PID_Controller
 	     try {
 	    	 //this allow to pot chart
 	    	 ChartController.isFinish=false;
-	 		 Parent root = FXMLLoader.load(getClass().getResource("layout/Chart.fxml"));
+	    	 URL url = new File("src/main/java/com/przemo/RegulatorPID_1/layout/Chart.fxml").toURL();
+	 		 Parent root = FXMLLoader.load(url);
 	         Stage stage = new Stage();
 	         stage.setTitle("PID");
 	         stage.setScene(new Scene(root, 600, 600));
@@ -162,5 +181,40 @@ public class PID_Controller
 	         e.printStackTrace();
 	     }
 	 }
+ }
+ 
+ public void showSave() throws IOException
+ {
+	 URL url = new File("src/main/java/com/przemo/RegulatorPID_1/layout/Save.fxml").toURL();
+	 Parent root = FXMLLoader.load(url);
+     Stage stage = new Stage();
+     stage.setTitle("SAVE");
+     stage.setScene(new Scene(root));
+     // focus only on one stage(window)
+     stage.initModality(Modality.APPLICATION_MODAL);
+     stage.show();
+ }
+ ///setting load pid parameters
+ public void loadParams()
+ {
+	 loadparamsbutton.getItems().clear();
+	 
+	 ParamsService paramsService = new ParamsService();
+	 List<Params> paramslist = paramsService.findAll();
+	 int menuItemId = 0;
+		for(Params p : paramslist)
+		{
+			//we are adding menuitem to SplitMenuButton
+			loadparamsbutton.getItems().add(new MenuItem(p.getText()));
+			// we are setting function of this menuitem
+			loadparamsbutton.getItems().get(menuItemId).setOnAction
+			(e ->{
+				kp_textfield.setText(Double.toString(p.getKp()));
+				ti_textfield.setText(Double.toString(p.getTi()));
+				td_textfield.setText(Double.toString(p.getTd()));
+				 });
+			menuItemId++;
+		}
+	 
  }
 }

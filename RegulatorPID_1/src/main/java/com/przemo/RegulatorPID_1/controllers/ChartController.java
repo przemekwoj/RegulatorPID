@@ -1,4 +1,4 @@
-package com.przemo.RegulatorPID_1;
+package com.przemo.RegulatorPID_1.controllers;
 
 import java.io.File;
 import java.io.IOException;
@@ -6,21 +6,16 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javax.imageio.ImageIO;
-import javax.swing.SwingUtilities;
 
-import javafx.application.Platform;
+import com.przemo.RegulatorPID_1.PID;
+
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.SnapshotParameters;
-import javafx.scene.chart.Axis;
-import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Button;
 import javafx.scene.image.WritableImage;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 

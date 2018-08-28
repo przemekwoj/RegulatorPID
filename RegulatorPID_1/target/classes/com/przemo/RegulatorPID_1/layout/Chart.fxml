@@ -8,7 +8,7 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="pane" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.przemo.RegulatorPID_1.ChartController">
+<AnchorPane fx:id="pane" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.przemo.RegulatorPID_1.controllers.ChartController">
    <children>
       <MenuBar layoutY="2.0">
         <menus>

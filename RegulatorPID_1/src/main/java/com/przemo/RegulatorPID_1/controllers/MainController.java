@@ -1,29 +1,26 @@
-package com.przemo.RegulatorPID_1;
+package com.przemo.RegulatorPID_1.controllers;
 
-import java.awt.List;
+import java.io.File;
 import java.io.IOException;
-import java.io.ObjectInputStream.GetField;
+import java.net.URL;
 import java.util.ArrayList;
-import java.util.Random;
 
-import javax.bluetooth.BluetoothStateException;
 import javax.bluetooth.DiscoveryAgent;
 import javax.bluetooth.LocalDevice;
 import javax.bluetooth.RemoteDevice;
 
-import javafx.event.ActionEvent;
+import com.przemo.RegulatorPID_1.Bluetooth;
+import com.przemo.RegulatorPID_1.MyThread;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -119,9 +116,11 @@ public class MainController
 	
 	public void nextPage() throws IOException
 	{
-		Parent root = FXMLLoader.load(getClass().getResource("layout/PID.fxml"));
+		URL url = new File("src/main/java/com/przemo/RegulatorPID_1/layout/PID.fxml").toURL();
+		Parent root = FXMLLoader.load(url);
 		Scene scene2 = new Scene(root);
-		scene2.getStylesheets().add(getClass().getResource("layout/application.css").toExternalForm());
+		String s = "src/main/java/com/przemo/RegulatorPID_1/layout/application.css.fxml";
+		scene2.getStylesheets().add(s);
 	    Stage stage = (Stage) buttonNext.getScene().getWindow();
 		stage.setScene(scene2);
 		stage.show();

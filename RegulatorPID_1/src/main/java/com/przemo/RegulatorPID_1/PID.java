@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class PID 
 {
 	//pid parameters
-	private double kp;
-	private double ti;
-	private double td;
+	public static double kp;
+	public static double ti;
+	public static double td;
 	//request value
 	public static double ud;
 	// error

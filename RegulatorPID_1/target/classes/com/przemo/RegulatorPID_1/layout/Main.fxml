@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="373.0" prefWidth="476.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.przemo.RegulatorPID_1.MainController">
+<AnchorPane prefHeight="373.0" prefWidth="476.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.przemo.RegulatorPID_1.controllers.MainController">
    <children>
       <SplitMenuButton fx:id="connectBTbutton" layoutX="140.0" layoutY="153.0" mnemonicParsing="false" onMouseEntered="#setBT" text="connect with BT">
          <graphic>
